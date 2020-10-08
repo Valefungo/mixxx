@@ -836,6 +836,7 @@ class MixxxCore(Feature):
                    "src/effects/builtin/phasereffect.cpp",
                    "src/effects/builtin/metronomeeffect.cpp",
                    "src/effects/builtin/tremoloeffect.cpp",
+                   "src/effects/builtin/vocoder.cpp",
 
                    "src/engine/effects/engineeffectsmanager.cpp",
                    "src/engine/effects/engineeffectrack.cpp",
