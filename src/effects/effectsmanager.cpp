@@ -398,6 +398,14 @@ void EffectsManager::setup() {
     pEffect = instantiateEffect("org.mixxx.effects.tremolo");
     pChain->addEffect(pEffect);
     m_pEffectChainManager->addEffectChain(pChain);
+
+    pChain = EffectChainPointer(new EffectChain(
+            this, "org.mixxx.effectchain.vocoder"));
+    pChain->setName(tr("Vocoder"));
+    pEffect = instantiateEffect("org.mixxx.effects.vocoder");
+    pChain->addEffect(pEffect);
+    m_pEffectChainManager->addEffectChain(pChain);
+
 }
 
 void EffectsManager::loadEffectChains() {
