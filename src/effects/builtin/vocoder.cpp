@@ -221,15 +221,15 @@ void VocoderEffect::vocoder_do_run(uint32_t sample_count, const CSAMPLE* pInputF
 
         pOutput[i] = 0.0;
         for (j = 0; j < numbands; j++) {
-            /*
-		qDebug() << "J "<<j
-			<<" "<<vocoder_ptr->bands_out[j].oldval
-			<<" "<<vocoder_ptr->bands_formant[j].y
-			<<" "<<(fabs (vocoder_ptr->bands_formant[j].y) - vocoder_ptr->bands_out[j].oldval)
-			<<" "<<vocoder_ptr->bands_out[j].decay
-			<<" "<<vocoder_ptr->bands_carrier[j].y
-			;
-		*/
+			/*
+			qDebug() << "J "<<j
+				<<" "<<vocoder_ptr->bands_out[j].oldval
+				<<" "<<vocoder_ptr->bands_formant[j].y
+				<<" "<<(fabs (vocoder_ptr->bands_formant[j].y) - vocoder_ptr->bands_out[j].oldval)
+				<<" "<<vocoder_ptr->bands_out[j].decay
+				<<" "<<vocoder_ptr->bands_carrier[j].y
+				;
+			*/
 
             vocoder_ptr->bands_out[j].oldval = vocoder_ptr->bands_out[j].oldval + (fabs(vocoder_ptr->bands_formant[j].y) - vocoder_ptr->bands_out[j].oldval) * vocoder_ptr->bands_out[j].decay;
             x = vocoder_ptr->bands_carrier[j].y * vocoder_ptr->bands_out[j].oldval;
@@ -270,6 +270,7 @@ void VocoderEffect::processChannel(const ChannelHandle& handle,
             globalBandLevel != l_globalBandLevel ||
             oscillator_m_detuning != l_oscillator_m_detuning ||
             oscillator_m_volume != l_oscillator_m_volume) {
+
         qDebug() << "Preset - "
                  << "oscillator_wave_shape_model: " << l_oscillator_wave_shape_model << ", "
                  << "oscillator_m_freq: " << l_oscillator_m_freq << ", "
@@ -283,8 +284,6 @@ void VocoderEffect::processChannel(const ChannelHandle& handle,
     globalBandLevel = l_globalBandLevel;
     oscillator_m_detuning = l_oscillator_m_detuning;
     oscillator_m_volume = l_oscillator_m_volume;
-
-    // qDebug() << "ProcessChannel("<<bufferParameters.samplesPerBuffer()<<","<<bufferParameters.channelCount()<<"): ws:" << oscillator_wave_shape_model << ", fre:" << oscillator_m_freq << ", bl:" << globalBandLevel;
 
     // Oscillator sample
     const fpp_t _frames = bufferParameters.samplesPerBuffer();
@@ -310,23 +309,6 @@ void VocoderEffect::processChannel(const ChannelHandle& handle,
 
         ffc++;
     }
-
-    /*
-	ffc = 0;
-	double isum = 0;
-	double osum = 0;
-	double ffcsum = 0;
-	double ocsum = 0;
-    for (unsigned int i = 0; i < _frames; i += cc)
-	{
-		ffcsum += _formantFirstChannel[ffc];
-		ocsum += _outputChannel[ffc];
-		isum += pInput[i];
-		osum += pOutput[i];
-		ffc++;
-    }
-	qDebug() << "Osum:" << osum << ", Isum:" << isum << ", ffcsum:" << ffcsum << ", ocsum:" << ocsum;
-*/
 }
 
 void VocoderEffect::update(CSAMPLE* _ab, const fpp_t _frames) {
