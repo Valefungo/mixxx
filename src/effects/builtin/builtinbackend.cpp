@@ -24,6 +24,7 @@
 #include "effects/builtin/phasereffect.h"
 #include "effects/builtin/tremoloeffect.h"
 #include "effects/builtin/whitenoiseeffect.h"
+#include "effects/builtin/vocoder.h"
 
 BuiltInBackend::BuiltInBackend(QObject* pParent)
         : EffectsBackend(pParent, EffectBackendType::BuiltIn) {
@@ -54,6 +55,7 @@ BuiltInBackend::BuiltInBackend(QObject* pParent)
     registerEffect<MetronomeEffect>();
     registerEffect<WhiteNoiseEffect>();
     registerEffect<TremoloEffect>();
+    registerEffect<VocoderEffect>();
 }
 
 BuiltInBackend::~BuiltInBackend() {

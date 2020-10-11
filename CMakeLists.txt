@@ -427,6 +427,7 @@ add_library(mixxx-lib STATIC EXCLUDE_FROM_ALL
   src/effects/builtin/reverbeffect.cpp
   src/effects/builtin/threebandbiquadeqeffect.cpp
   src/effects/builtin/tremoloeffect.cpp
+  src/effects/builtin/vocoder.cpp
   src/effects/effect.cpp
   src/effects/effectbuttonparameterslot.cpp
   src/effects/effectchain.cpp
